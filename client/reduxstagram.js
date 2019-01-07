@@ -13,14 +13,18 @@ import PhotoGrid from './components/PhotoGrid'
 
 //Import React dependencies
 import {Router, Route, IndexRoute, browserHistory } from 'react-router'
+import { Provider } from 'react-redux';
+import store, { history } from './store'
 
 const router = (
-    <Router history={browserHistory}>
-        <Route path = '/' component={Main}>
-            <IndexRoute component={PhotoGrid}></IndexRoute>
-            <Route path='/view/:id' component={Single}></Route>
-        </Route>
-    </Router>
+    <Provider store={store}>
+        <Router history={history}>
+            <Route path = '/' component={Main}>
+                <IndexRoute component={PhotoGrid}></IndexRoute>
+                <Route path='/view/:id' component={Single}></Route>
+            </Route>
+        </Router>
+    </Provider>
 )
 
 render(router, document.getElementById('root'))
